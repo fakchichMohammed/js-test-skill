@@ -67,26 +67,89 @@ form.submitted {
 
 /* Style the output <div> */
 .output {
-  font-family: monospace;
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px solid #007bff;
-  border-radius: 10px;
-  background-color: #f8f8f8;
-  white-space: pre;
-  max-width: 400px;
-  word-wrap: break-word;
-  line-height: 1.6;
-
-  /* Center the elements inside the output div using flexbox */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Style the output <div> when form is submitted */
-form.submitted .output {
-  background-color: #fff;
-  border-color: #28a745;
-  color: #28a745;
-}
+    font-family: monospace;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #007bff;
+    background-image: linear-gradient(45deg, #007bff, #28a745);
+    color: #fff;
+    white-space: pre;
+    max-width: 400px;
+    word-wrap: break-word;
+    line-height: 1.6;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add a cool shadow effect on hover for the output <div> */
+  .output:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Style the output <div> when form is submitted */
+  form.submitted .output {
+    background-color: #28a745;
+    background-image: linear-gradient(45deg, #28a745, #17a2b8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style the JSON text inside the output <div> */
+  .output pre {
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Style the <select> element */
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* Style the <input type="number"> element */
+  
+  
+  /* Style the <button> element */
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Apply some animation on hover for the form elements */
+  form select:hover,
+  form input[name="success"]:hover,
+  form button[type="submit"]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the form container when the form is submitted */
+  form.submitted {
+    opacity: 0.8;
+    pointer-events: none;
+  }

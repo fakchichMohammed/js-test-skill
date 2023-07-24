@@ -52,7 +52,12 @@ const FormComponent = class {
 
   // Method to load <select> options with the data from oppoStatus array
   loadStatusOptions() {
-   // TODO
+    oppoStatus.forEach((statusObj) => {
+      const option = document.createElement("option");
+      option.value = statusObj.K_OPPO_STATUS;
+      option.textContent = statusObj.STATUS;
+      this.selectStatus.appendChild(option);
+    });
   }
 
   // Method to update the "Success" input value based on the selected status
