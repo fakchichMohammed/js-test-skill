@@ -44,19 +44,38 @@ const FormComponent = class {
       this.handleFormSubmit(event)
     );
   }
+  // Method to start the Form Component
   start() {
-    // Start modifying the form elements here!
-    // You are allowed to add extra methods, properties or change the constructor of this class
+    // Load the <select> options with the contents of the global oppoStatus array
+    this.loadStatusOptions();
+  }
+
+  // Method to load <select> options with the data from oppoStatus array
+  loadStatusOptions() {
+   // TODO
   }
 
   // Method to update the "Success" input value based on the selected status
   updateSuccessValue() {
-    // TODO
+    const selectedStatus = parseInt(this.selectStatus.value, 10);
+    const selectedStatusObj = oppoStatus.find(
+      (statusObj) => statusObj.K_OPPO_STATUS === selectedStatus
+    );
+
+    if (selectedStatusObj) {
+      this.inputSuccess.value = selectedStatusObj.SUCCESS;
+    }
   }
 
   // Method to handle form submission
   handleFormSubmit(event) {
-    // TODO
+    event.preventDefault();
+    // Collect form data and create a JSON string
+    const formData = {
+      status: parseInt(this.selectStatus.value, 10),
+      success: parseInt(this.inputSuccess.value, 10),
+    };
+    this.outputDiv.textContent = JSON.stringify(formData);
   }
 };
 
