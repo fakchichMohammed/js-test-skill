@@ -1,3 +1,5 @@
+
+
 /* Style the <form> container */
 form {
   max-width: 300px;
@@ -75,6 +77,11 @@ form.submitted {
   max-width: 400px;
   word-wrap: break-word;
   line-height: 1.6;
+
+  /* Center the elements inside the output div using flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Style the output <div> when form is submitted */
