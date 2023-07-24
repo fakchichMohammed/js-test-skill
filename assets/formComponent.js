@@ -1,3 +1,5 @@
+// formComponent.js
+
 // Data representing the opportunity status options
 const oppoStatus = [
   {
@@ -32,17 +34,20 @@ const FormComponent = class {
   constructor() {
     // DOM elements of the form and output div
     this.form = document.querySelector("form");
-    this.selectStatus = this.form.querySelector('select[name="status"]');
-    this.inputSuccess = this.form.querySelector('input[name="success"]');
+    this.selectStatus = this.form?.querySelector('select[name="status"]');
+    this.inputSuccess = this.form?.querySelector('input[name="success"]');
     this.outputDiv = document.querySelector(".output");
 
-    // Event listeners for select change and form submission
-    this.selectStatus.addEventListener("change", () =>
-      this.updateSuccessValue()
-    );
-    this.form.addEventListener("submit", (event) =>
-      this.handleFormSubmit(event)
-    );
+    // Check if the elements are successfully found in the DOM before adding event listeners
+    if (this.form && this.selectStatus && this.inputSuccess && this.outputDiv) {
+      // Event listeners for select change and form submission
+      this.selectStatus.addEventListener("change", () =>
+        this.updateSuccessValue()
+      );
+      this.form.addEventListener("submit", (event) =>
+        this.handleFormSubmit(event)
+      );
+    }
   }
   // Method to start the Form Component
   start() {
@@ -52,12 +57,15 @@ const FormComponent = class {
 
   // Method to load <select> options with the data from oppoStatus array
   loadStatusOptions() {
-    oppoStatus.forEach((statusObj) => {
-      const option = document.createElement("option");
-      option.value = statusObj.K_OPPO_STATUS;
-      option.textContent = statusObj.STATUS;
-      this.selectStatus.appendChild(option);
-    });
+    // Check if the selectStatus element is not null before adding options
+    if (this.selectStatus) {
+      oppoStatus.forEach((statusObj) => {
+        const option = document.createElement("option");
+        option.value = statusObj.K_OPPO_STATUS;
+        option.textContent = statusObj.STATUS;
+        this.selectStatus.appendChild(option);
+      });
+    }
   }
 
   // Method to update the "Success" input value based on the selected status
@@ -67,7 +75,7 @@ const FormComponent = class {
       (statusObj) => statusObj.K_OPPO_STATUS === selectedStatus
     );
 
-    if (selectedStatusObj) {
+    if (selectedStatusObj && this.inputSuccess) {
       this.inputSuccess.value = selectedStatusObj.SUCCESS;
     }
   }
@@ -80,7 +88,12 @@ const FormComponent = class {
       status: parseInt(this.selectStatus.value, 10),
       success: parseInt(this.inputSuccess.value, 10),
     };
-    this.outputDiv.textContent = JSON.stringify(formData);
+
+    // Check if this.outputDiv is not null before setting textContent
+    if (this.outputDiv) {
+      // Use JSON.stringify to convert form data to a JSON string
+      this.outputDiv.textContent = JSON.stringify(formData);
+    }
   }
 };
 
